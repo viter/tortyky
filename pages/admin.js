@@ -2,12 +2,12 @@ import AddMenu from "../components/addmenu";
 import AdminCategory from "../components/category";
 const { connectToDatabase } = require('../utils/mongodb');
 
-export default function Admin({category}) {
+export default function Admin({category, menu}) {
     return (
         <>
             <div className="border-b ml-4 mr-4 pb-2 text-teal-800 border-teal-900">
                 <p className='text-4xl '>Меню</p>
-                <AddMenu className='block'/>
+                <AddMenu menu={menu} className='block'/>
             </div>
             <div className="border-b text-4xl ml-4 mr-4 pb-2 text-teal-800 border-teal-900">
                 Категорії
@@ -26,10 +26,15 @@ export async function getServerSideProps() {
         .collection("categories")
         .find({})
         .toArray();
+    const menu = await db
+        .collection("menu")
+        .find({})
+        .toArray();
 
     return {
         props: {
             category: JSON.parse(JSON.stringify(categories)),
+            menu: JSON.parse(JSON.stringify(menu))
         },
     };
 }
