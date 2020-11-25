@@ -7,7 +7,7 @@ export default function Admin({category, menu}) {
         <>
             <div className="border-b ml-4 mr-4 pb-2 text-teal-800 border-teal-900">
                 <p className='text-4xl '>Меню</p>
-                <AddMenu menu={menu} className='block'/>
+                <AddMenu menu={menu} className='w-full'/>
             </div>
             <div className="border-b text-4xl ml-4 mr-4 pb-2 text-teal-800 border-teal-900">
                 Категорії

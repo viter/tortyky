@@ -1,6 +1,7 @@
 import { checkbox } from "@tailwindcss/custom-forms/src/defaultOptions";
 import { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
+import MenuPreview from "./menupreview";
 
 export default function AddMenu({menu}) {
     const [hasSubmenu, setHasSubmenu] = useState(false);
@@ -55,7 +56,7 @@ export default function AddMenu({menu}) {
 
     return (
         <>
-            <div className='w-full max-w-xs'>
+            <div className='flex max-w-xs w-full'>
                 <form onSubmit={handleSubmitForm} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
                     <div className="mb-4">
                         <label htmlFor='name' className='block text-gray-700 text-sm font-bold mb-2'>Ім'я</label>
@@ -99,6 +100,9 @@ export default function AddMenu({menu}) {
                     </div>
                     
                 </form>
+                <div className='bg-blue-200 w-full'>
+                    <MenuPreview menu={menu}/>
+                </div>
             </div>
         </>
     );
