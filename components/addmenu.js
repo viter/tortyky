@@ -18,6 +18,8 @@ export default function AddMenu({menu}) {
             hasSubmenu,
             parent
         }
+        console.log(e.target);
+        e.target.reset();
         addMenu(data);
     }
 
@@ -35,7 +37,10 @@ export default function AddMenu({menu}) {
             const fetchedmenu = await m.json();
             console.log('m2');
             console.log(menu)
-            setFetchedMenu(fetchedmenu);
+            /* setName('');
+            setHasSubmenu(false);
+            */
+            setFetchedMenu(fetchedmenu); 
         } catch (error) {
             console.log(error);
         }
@@ -56,6 +61,7 @@ export default function AddMenu({menu}) {
 
     return (
         <>
+            <div className='flex mt-5'>
             <div className='flex max-w-xs w-full'>
                 <form onSubmit={handleSubmitForm} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
                     <div className="mb-4">
@@ -73,6 +79,7 @@ export default function AddMenu({menu}) {
                             className="form-checkbox mr-2 border leading-tight text-green-500" type="checkbox" 
                             value={hasSubmenu}
                             onClick={checkboxClicked}
+                            checked={checkboxClicked}
                         />
                         <span className="text-sm">
                             Має підменю
@@ -100,9 +107,10 @@ export default function AddMenu({menu}) {
                     </div>
                     
                 </form>
-                <div className='bg-blue-200 w-full'>
-                    <MenuPreview menu={menu}/>
-                </div>
+            </div>
+            <div className='bg-blue-200 w-full shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-auto'>
+                    <MenuPreview menu={menulist}/>
+            </div>
             </div>
         </>
     );

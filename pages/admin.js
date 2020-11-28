@@ -9,11 +9,10 @@ export default function Admin({category, menu}) {
                 <p className='text-4xl '>Меню</p>
                 <AddMenu menu={menu} className='w-full'/>
             </div>
-            <div className="border-b text-4xl ml-4 mr-4 pb-2 text-teal-800 border-teal-900">
+            <div className="border-b text-4xl ml-4 mr-4 mt-5 text-teal-800 border-teal-900">
                 Категорії
-            </div>
-            <div className='flex m-4 pb-2 text-center'>
-                <AdminCategory category={category}/>
+
+                    <AdminCategory category={category}/>
             </div>
         </>
     );

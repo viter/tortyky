@@ -1,4 +1,6 @@
 const { connectToDatabase } = require('../../utils/mongodb');
+const { ObjectId } = require('mongodb');
+
 
 export default async (req, res) => {
     try {
@@ -6,9 +8,15 @@ export default async (req, res) => {
         const result = await db.collection("menu").insertOne({
             name: req.body.name,
             hasSubmenu: req.body.hasSubmenu,
-            parent: req.body.parent
+            parent: req.body.parent,
+            submenus: []
         });
-        console.log(result.insertedCount);
+        if(req.body.parent != 'root') {
+            const updateResult = await db.collection("menu").findOneAndUpdate(
+                { _id: new ObjectId(req.body.parent) },
+                { $push: {submenus: result.insertedId} }
+            );
+        }
         res.json({msg: 'Succsess'})
     } catch (error) {
         console.error(error);
