@@ -79,7 +79,6 @@ export default function AddMenu({menu}) {
                             className="form-checkbox mr-2 border leading-tight text-green-500" type="checkbox" 
                             value={hasSubmenu}
                             onClick={checkboxClicked}
-                            checked={checkboxClicked}
                         />
                         <span className="text-sm">
                             Має підменю
@@ -91,7 +90,7 @@ export default function AddMenu({menu}) {
                         <select
                             value={parent}
                             onChange={handleSelectCange}
-                            className='border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-1 focus:ring-blue-600'
+                            className='bg-white border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-1 focus:ring-blue-600'
                             disabled={hasSubmenu}>
                                 <option value='root'>Головне</option>
                                 {
@@ -108,7 +107,7 @@ export default function AddMenu({menu}) {
                     
                 </form>
             </div>
-            <div className='bg-blue-200 w-full shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-auto'>
+            <div className='bg-blue-200 w-full shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-auto h-300px'>
                     <MenuPreview menu={menulist}/>
             </div>
             </div>
