@@ -1,7 +1,8 @@
-import { checkbox } from "@tailwindcss/custom-forms/src/defaultOptions";
 import { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
-import MenuPreview from "./menupreview";
+import MenuPreview from './menupreview';
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 export default function AddMenu({menu}) {
     const [hasSubmenu, setHasSubmenu] = useState(false);
@@ -62,8 +63,8 @@ export default function AddMenu({menu}) {
     return (
         <>
             <div className='flex mt-5'>
-            <div className='flex max-w-xs w-full'>
-                <form onSubmit={handleSubmitForm} className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
+            <div className='flex max-w-xs w-full h-300px'>
+                <form onSubmit={handleSubmitForm} className='bg-white shadow-md rounded px-8 pt-6 pb-8'>
                     <div className="mb-4">
                         <label htmlFor='name' className='block text-gray-700 text-sm font-bold mb-2'>Ім'я</label>
                         <input
@@ -76,7 +77,7 @@ export default function AddMenu({menu}) {
                     <div className="mb-6">
                         <label className="md:w-2/3 block text-gray-500 font-bold">
                         <input  
-                            className="form-checkbox mr-2 border leading-tight text-green-500" type="checkbox" 
+                            className="mr-2 border leading-tight text-green-500" type="checkbox" 
                             value={hasSubmenu}
                             onClick={checkboxClicked}
                         />
@@ -107,8 +108,12 @@ export default function AddMenu({menu}) {
                     
                 </form>
             </div>
-            <div className='bg-blue-200 w-full shadow-md rounded px-8 pt-6 pb-8 mb-4 overflow-auto h-300px'>
+            <div className='bg-blue-200 w-full shadow-md rounded px-8 pt-6 pb-8 mb-4 h-300px'>
+                <PerfectScrollbar>
+                <div className='mt-0.5 mb-0.5 h-full'>
                     <MenuPreview menu={menulist}/>
+                </div>
+                </PerfectScrollbar>
             </div>
             </div>
         </>
