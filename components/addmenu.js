@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import MenuPreview from './menupreview';
-import 'react-perfect-scrollbar/dist/css/styles.css';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+
 
 export default function AddMenu({menu}) {
     const [hasSubmenu, setHasSubmenu] = useState(false);
@@ -109,11 +108,11 @@ export default function AddMenu({menu}) {
                 </form>
             </div>
             <div className='bg-blue-200 w-full shadow-md rounded px-8 pt-6 pb-8 mb-4 h-300px'>
-                <PerfectScrollbar>
-                <div className='mt-0.5 mb-0.5 h-full'>
+                
+                <div className='mt-0.5 mb-0.5 h-full overflow-auto'>
                     <MenuPreview menu={menulist}/>
                 </div>
-                </PerfectScrollbar>
+                
             </div>
             </div>
         </>
