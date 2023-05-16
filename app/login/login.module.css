@@ -1,0 +1,74 @@
+.container {
+  margin: auto;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.formDiv {
+  background-color: rgb(242, 231, 245, 0.5);
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.loginInput {
+  font-size: 1.2rem;
+  padding: 0.5rem 2rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+.loginInput:focus {
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.8);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loginButton {
+  border: 5em;
+  cursor: pointer;
+  outline: none;
+  font-size: 16px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.7em 2em;
+  border-radius: 1px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  color: white;
+}
+
+.googleButton {
+  background-color: aliceblue;
+  padding: 0.5em 2em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.googleButton:hover {
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.8);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+}
+
+.googleLogo {
+  vertical-align: middle;
+  width: 30px;
+  margin-right: 1rem;
+}
+
+.error {
+  color: #cb4278;
+}

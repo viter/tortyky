@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: rgb(95, 158, 160, 0.2);
+  position: relative;
+}
+
+.logo {
+  width: 30%;
+}
+
+.main {
+  margin: auto;
+  padding: 1rem;
+  width: 70%;
+}
+
+.mainLink {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgb(68, 55, 85);
+  text-decoration: none;
+}
+
+.mainLink:hover {
+  color: rgb(82, 83, 88, 0.7);
+}
