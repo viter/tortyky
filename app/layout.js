@@ -1,4 +1,4 @@
-import { NextAuthProvider } from './providers';
+import { NextAuthProvider, ReduxProvider } from './providers';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -14,7 +14,9 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="uk">
       <body className={inter.className}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <ReduxProvider>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

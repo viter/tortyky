@@ -31,14 +31,24 @@ model napovnennya {
 model tags {
   id   Int    @id @default(autoincrement())
   name String @db.VarChar(255)
+  torty TagsOnTorty[]
 }
 
 model torty {
   id          Int    @id @default(autoincrement())
   name        String @db.VarChar(255)
   description String @db.Text
-  tags        String @db.VarChar(255)
   images      String @db.Text
+  tags        TagsOnTorty[]
+}
+
+model TagsOnTorty {
+  tag       tags      @relation(fields: [tagId], references: [id], onDelete: Restrict)
+  tagId     Int
+  tort      torty     @relation(fields: [tortId], references: [id])
+  tortId    Int
+
+  @@id([tagId, tortId])
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments

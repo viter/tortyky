@@ -15,6 +15,9 @@
   margin: auto;
   padding: 1rem;
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .mainLink {
@@ -26,4 +29,16 @@
 
 .mainLink:hover {
   color: rgb(82, 83, 88, 0.7);
+}
+
+@media screen and (max-width: 1500px) {
+  .main {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .main {
+    width: 100%;
+  }
 }

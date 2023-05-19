@@ -1,14 +1,20 @@
-import { getServerSession } from 'next-auth';
-import styles from './admin.module.css';
-import { authOptions } from '@/lib/auth';
+import styles from './tags/tags.module.css';
+import TortyForm from '@/app/components/forms/TortyForm';
+import { db } from '@/utils/db.server';
 
-export default async function Torty() {
-  const session = await getServerSession(authOptions);
+export default async function Tegy() {
+  const tags = await db.tags.findMany();
 
   return (
     <>
-      <h1 className={styles.header}>Торти</h1>
-      <pre>{JSON.stringify(session)}</pre>
+      <div className={styles.header}>
+        <h1>Торти</h1>
+      </div>
+      <div className={styles.main}>
+        <div className={styles.formDiv}>
+          <TortyForm tags={tags} />
+        </div>
+      </div>
     </>
   );
 }

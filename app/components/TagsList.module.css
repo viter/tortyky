@@ -1,0 +1,29 @@
+.tagItem {
+  list-style-type: none;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.row:hover {
+  background-color: rgba(212, 206, 214, 0.3);
+}
+
+.item {
+  padding-right: 2rem;
+  cursor: pointer;
+  padding-top: 0.3rem;
+}
+
+.item:hover {
+  font-weight: bold;
+}
+
+.delete:hover {
+  fill: rgb(233, 135, 140);
+  cursor: pointer;
+}

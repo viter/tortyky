@@ -1,0 +1,30 @@
+.errorDialog {
+  padding: 1rem;
+  background-color: rgb(250, 180, 201);
+  color: rgb(90, 17, 35);
+  font-size: 0.9rem;
+  border-radius: 7px;
+  position: relative;
+  width: 100%;
+  border: solid 1px rgb(233, 134, 159);
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+.confirmButton {
+  display: block;
+  margin-left: auto;
+  margin-top: 1rem;
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  color: rgb(90, 17, 35);
+  border-radius: 7px;
+  background-color: rgb(253, 174, 198);
+  cursor: pointer;
+  border-style: none;
+  border: solid 2px rgb(233, 134, 159);
+}
+
+.confirmButton:active {
+  background-color: rgb(216, 143, 183);
+}
