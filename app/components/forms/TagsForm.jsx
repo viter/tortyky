@@ -38,6 +38,7 @@ export default function TagsForm() {
         body: JSON.stringify({ id: valuesToUpdate.id, name: data.name }),
       });
       dispatch(setStartupTags(await result.json()));
+      dispatch(resetValuesToUpdate());
     } else {
       const result = await fetch('/api/tags', {
         method: 'POST',
