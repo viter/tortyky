@@ -15,7 +15,9 @@ export default function TagsList({ startupTags }) {
   const [errorMessageText, setErrorMessageText] = useState('');
 
   useEffect(() => {
-    store.dispatch(setStartupTags(startupTags));
+    if (!tags.length) {
+      store.dispatch(setStartupTags(startupTags));
+    }
   }, []);
 
   const updateTag = (e) => {

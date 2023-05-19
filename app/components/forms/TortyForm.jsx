@@ -2,18 +2,18 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import styles from './forms.module.css';
 
-export default function TortyForm({ tags }) {
+export default function TortyForm({ initialTagsList }) {
+  const currentTags = useSelector((state) => state.tags.tags);
+  const tags = currentTags.length ? currentTags : initialTagsList;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = async ({ name, description, images, tag }) => {
-    console.log('****************');
-    console.log(name, description, images, tag);
-    console.log('****************');
     const result = await fetch('/api/torty', {
       method: 'POST',
       headers: {

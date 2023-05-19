@@ -12,7 +12,7 @@ export default async function Tegy() {
       </div>
       <div className={styles.main}>
         <div className={styles.formDiv}>
-          <TortyForm tags={tags} />
+          <TortyForm initialTagsList={tags} />
         </div>
       </div>
     </>
