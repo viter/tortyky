@@ -2,9 +2,9 @@ import { stat, mkdir, writeFile } from 'fs/promises';
 import mime from 'mime';
 
 /**
- * @param {File|File[]} files
+ * @param {(File|File[])} files
  * @param {string} uploadDir
- * @param {string[]} [types=['jpeg', 'png', 'jpg']
+ * @param {string[]} [types=['jpeg', 'png', 'jpg']]
  * @returns {{code: number, message: string}}
  */
 export default async function fileUploader(files, uploadDir, types = ['jpeg', 'png', 'jpg']) {
