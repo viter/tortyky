@@ -53,7 +53,6 @@ export default async function fileUploader(files, uploadDir, types = ['jpeg', 'p
       };
     }
 
-    //return NextResponse.json({ fileUrl: `${uploadDir}/${filename}` });
     return { code: 10, message: 'ok' };
   } catch (e) {
     console.error('Error while trying to upload a file\n', e);
