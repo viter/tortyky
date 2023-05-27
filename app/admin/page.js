@@ -1,4 +1,4 @@
-import styles from './tags/tags.module.css';
+import styles from './admin.module.css';
 import TortyForm from '@/app/components/forms/TortyForm';
 import { db } from '@/utils/db.server';
 
@@ -10,7 +10,8 @@ export default async function Tegy() {
       <div className={styles.header}>
         <h1>Торти</h1>
       </div>
-      <div className={styles.main}>
+
+      <div className={styles.tortyMain}>
         <div className={styles.formDiv}>
           <TortyForm initialTagsList={tags} />
         </div>
