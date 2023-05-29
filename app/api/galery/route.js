@@ -12,11 +12,7 @@ export async function POST(request) {
     files.push(file[1]);
   }
 
-  const result = await saveFiles(files, uploadDir);
-
-  console.log('********************');
-  console.log(result);
-  console.log('********************');
+  const result = saveFiles(files, uploadDir);
 
   /* try {
     await stat(uploadDir);

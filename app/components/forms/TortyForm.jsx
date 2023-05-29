@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import styles from './forms.module.css';
 import FilePicker from '../FilePicker';
+import getResizedImages from '@/utils/resizeImage';
 
 export default function TortyForm({ initialTagsList }) {
   const currentTags = useSelector((state) => state.tags.tags);
@@ -30,13 +31,12 @@ export default function TortyForm({ initialTagsList }) {
   };
 
   const onSubmitImage = async ({ photo }) => {
-    console.log('========================');
-    console.log(photo);
-    console.log('========================');
     const formData = new FormData();
 
-    for (let i = 0; i < photo.length; i++) {
-      formData.append('files', photo.item(i));
+    const resizedImageFiles = await getResizedImages(photo);
+
+    for (let i = 0; i < resizedImageFiles.length; i++) {
+      formData.append('files', resizedImageFiles.item(i));
     }
 
     const result = await fetch('/api/galery', {
