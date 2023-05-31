@@ -1,7 +1,9 @@
 import Image from 'next/image';
-import { useState, forwardRef, useRef } from 'react';
+import { useState, forwardRef, useRef, useEffect } from 'react';
 import styles from './FilePicker.module.css';
 import localFont from 'next/font/local';
+import { useDispatch, useSelector } from 'react-redux';
+import { setClearImagesFlagFalse } from '@/slices/tortySlice';
 
 const ManjariFont = localFont({
   src: '../fonts/Manjari-Bold.ttf',
@@ -10,7 +12,21 @@ const ManjariFont = localFont({
 
 const FilePicker = forwardRef(({ nameAttribute, allowedFileTypes, isMultiple, ...rest }, ref) => {
   const [images, setImages] = useState([]);
+
+  const dispatch = useDispatch();
+
   const filesArray = useRef([]);
+
+  const clearSelectedImages = useSelector((state) => {
+    return state.torty.clearSelectedImages;
+  });
+
+  useEffect(() => {
+    if (clearSelectedImages) {
+      setImages([]);
+      dispatch(setClearImagesFlagFalse());
+    }
+  }, [clearSelectedImages]);
 
   const selectFile = (e) => {
     const input = e.target;

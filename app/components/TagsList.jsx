@@ -21,7 +21,6 @@ export default function TagsList({ startupTags }) {
   }, []);
 
   const updateTag = (e) => {
-    console.log(e.target.closest('li').dataset.tag);
     const tag = JSON.parse(e.target.parentElement.dataset.tag);
     dispatch(changeValuesToUpdate(tag));
   };

@@ -5,7 +5,7 @@ import mime from 'mime';
  * @param {(File|File[])} files
  * @param {string} uploadDir
  * @param {string[]} [types=['jpeg', 'png', 'jpg']]
- * @returns {{code: number, message: string}}
+ * @returns {Promise} {code: number, message: string, fileNames: string[]}
  */
 export default async function fileUploader(files, uploadDir, types = ['jpeg', 'png', 'jpg']) {
   let filesToSave = [];
@@ -27,6 +27,7 @@ export default async function fileUploader(files, uploadDir, types = ['jpeg', 'p
   }
 
   try {
+    const fileNames = [];
     let failureCount = 0;
     for (const file of filesToSave) {
       if (types.includes(mime.getExtension(file.type))) {
@@ -34,6 +35,7 @@ export default async function fileUploader(files, uploadDir, types = ['jpeg', 'p
         const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
         const filename = `${uniqueSuffix}.${mime.getExtension(file.type)}`;
         await writeFile(`${uploadDir}/${filename}`, buffer);
+        fileNames.push(filename);
       } else {
         failureCount++;
       }
@@ -43,6 +45,7 @@ export default async function fileUploader(files, uploadDir, types = ['jpeg', 'p
       return {
         code: 40,
         message: `Not supported file types. Only ${types} are allowed.`,
+        fileNames: [],
       };
     }
 
@@ -50,12 +53,13 @@ export default async function fileUploader(files, uploadDir, types = ['jpeg', 'p
       return {
         code: 41,
         message: `Some files have not supported types. Only ${types} are allowed.`,
+        fileNames: [],
       };
     }
 
-    return { code: 10, message: 'ok' };
+    return { code: 10, message: 'ok', fileNames };
   } catch (e) {
     console.error('Error while trying to upload a file\n', e);
-    return { code: 30, message: 'Could not save file.' };
+    return { code: 30, message: 'Could not save file.', fileNames: [] };
   }
 }

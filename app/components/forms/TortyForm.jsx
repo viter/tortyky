@@ -1,12 +1,14 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './forms.module.css';
 import FilePicker from '../FilePicker';
 import getResizedImages from '@/utils/resizeImage';
+import { addTort, setClearImagesFlagTrue } from '@/slices/tortySlice';
 
 export default function TortyForm({ initialTagsList }) {
+  const dispatch = useDispatch();
   const currentTags = useSelector((state) => state.tags.tags);
 
   const tags = currentTags.length ? currentTags : initialTagsList;
@@ -15,23 +17,13 @@ export default function TortyForm({ initialTagsList }) {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  const onSubmit = async ({ name, description, images, tag }) => {
-    const result = await fetch('/api/torty', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, description, images, tag }),
-    });
-    //dispatch(addTag(await result.json()));
-
-    //reset();
-  };
-
-  const onSubmitImage = async ({ photo }) => {
+  const onSubmit = async ({ name, description, tag, photo }) => {
     const formData = new FormData();
+
+    formData.append('tort', JSON.stringify({ name, description, tag }));
 
     const resizedImageFiles = await getResizedImages(photo);
 
@@ -39,14 +31,19 @@ export default function TortyForm({ initialTagsList }) {
       formData.append('files', resizedImageFiles.item(i));
     }
 
-    const result = await fetch('/api/galery', {
+    const result = await fetch('/api/torty', {
       method: 'POST',
       body: formData,
     });
+
+    dispatch(addTort(await result.json()));
+
+    reset();
+    dispatch(setClearImagesFlagTrue());
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitImage)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.mainSection}>
         <div className={styles.section1}>
           <input

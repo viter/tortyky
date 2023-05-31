@@ -1,0 +1,8 @@
+.cardMain {
+  background-color: rgba(212, 206, 214, 0.3);
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  border-radius: 5px;
+}
