@@ -1,0 +1,29 @@
+.editButton,
+.deleteButton {
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  color: #f7f2f2;
+  border-radius: 3px;
+  vertical-align: middle;
+  background-color: rgb(94, 88, 102);
+  cursor: pointer;
+  border-style: none;
+}
+
+.editButton:active,
+.deleteButton:active {
+  background-color: rgb(114, 90, 141);
+}
+
+.deleteButton {
+  background-color: rgb(146, 26, 72);
+  margin-left: 1rem;
+}
+
+.editButton:hover {
+  background-color: rgb(124, 119, 131);
+}
+
+.deleteButton:hover {
+  background-color: rgb(170, 52, 97);
+}

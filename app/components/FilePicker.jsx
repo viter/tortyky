@@ -105,6 +105,7 @@ const FilePicker = forwardRef(({ nameAttribute, allowedFileTypes, isMultiple, ..
                 imageName={image.name}
                 src={image.url}
                 imageRemoveHandler={imageRemoveHandler}
+                dim={{ width: 200, height: 130 }}
               />
             ))}
           </div>
@@ -116,7 +117,7 @@ const FilePicker = forwardRef(({ nameAttribute, allowedFileTypes, isMultiple, ..
 
 //==========================================================
 
-function ImageThumb({ imageName, src, imageRemoveHandler }) {
+function ImageThumb({ imageName, src, imageRemoveHandler, dim }) {
   const [hover, setHover] = useState(false);
 
   const mouseEnterHandler = (e) => {
@@ -141,8 +142,8 @@ function ImageThumb({ imageName, src, imageRemoveHandler }) {
       ) : null}
       <Image
         src={src}
-        width={200}
-        height={130}
+        width={dim.width}
+        height={dim.height}
         alt="tortyk"
         onMouseEnter={mouseEnterHandler}
         onMouseLeave={mouseLeaveHandler}

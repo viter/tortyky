@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
+  position: fixed;
 }
 
 .navbar a {
@@ -15,17 +16,6 @@
   font-size: large;
   padding: 4px 6px;
   color: #fff !important;
-}
-
-.logout::after {
-  max-width: 100%;
-  height: 2px;
-  display: block;
-  content: '';
-  background: linear-gradient(-90deg, #ff9100 0%, #f10366 50%, #6173ff 100%);
-  opacity: 1;
-  margin-bottom: -6px;
-  margin-top: 1px;
 }
 
 .sectionsBar {
@@ -52,15 +42,15 @@
 }
 
 .navLink {
-  background-color: rgb(82, 83, 88, 0.7);
+  background-color: rgb(88, 89, 94);
 }
 
 .navLink:hover {
-  background-color: rgb(82, 83, 88, 0.9);
+  background-color: rgb(82, 83, 88);
 }
 
 .activeLink {
-  background-color: rgb(82, 83, 88);
+  background-color: rgb(68, 63, 75);
   cursor: default;
 }
 

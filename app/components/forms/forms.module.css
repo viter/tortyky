@@ -46,8 +46,16 @@
   background-color: rgb(114, 90, 141);
 }
 .cancelButton {
-  background-color: rgb(97, 90, 105);
+  background-color: rgb(141, 130, 153);
   margin-left: 1rem;
+}
+
+.submitButton:hover {
+  background-color: rgb(117, 113, 124);
+}
+
+.cancelButton:hover {
+  background-color: rgb(155, 83, 111);
 }
 
 .checkboxContainer {

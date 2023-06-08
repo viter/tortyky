@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   torty: [],
   clearSelectedImages: false,
+  imagesList: [],
+  showForm: false,
 };
 
 export const tortySlice = createSlice({
@@ -23,9 +25,27 @@ export const tortySlice = createSlice({
     setClearImagesFlagFalse: (state) => {
       state.clearSelectedImages = false;
     },
+
+    setShowFormFlagTrue: (state) => {
+      state.showForm = true;
+    },
+    setShowFormFlagFalse: (state) => {
+      state.showForm = false;
+    },
+
+    updateImagesList: (state, action) => {
+      state.imagesList = [...action.payload];
+    },
   },
 });
 
-export const { addTort, setStartupTorty, setClearImagesFlagTrue, setClearImagesFlagFalse } =
-  tortySlice.actions;
+export const {
+  addTort,
+  setStartupTorty,
+  setClearImagesFlagTrue,
+  setClearImagesFlagFalse,
+  updateImagesList,
+  setShowFormFlagFalse,
+  setShowFormFlagTrue,
+} = tortySlice.actions;
 export default tortySlice.reducer;

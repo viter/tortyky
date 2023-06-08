@@ -1,0 +1,41 @@
+.actionButtonMain {
+  --radius: 14px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 80px;
+  padding: 0;
+  margin: 0;
+  border-radius: var(--radius);
+}
+
+.buttonEdit,
+.buttonDelete {
+  background-color: rgb(162, 176, 230);
+  width: 50%;
+  display: inline-block;
+  padding: 3px 0 0 10px;
+  box-sizing: border-box;
+}
+
+.buttonEdit:hover,
+.buttonDelete:hover {
+  background-color: rgb(211, 211, 245);
+  cursor: pointer;
+}
+
+.buttonEdit {
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+}
+
+.buttonDelete {
+  border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+.buttonIcon {
+  width: 20px;
+  stroke: rgb(84, 84, 88);
+  pointer-events: none;
+}

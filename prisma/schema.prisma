@@ -45,7 +45,7 @@ model torty {
 model TagsOnTorty {
   tag       tags      @relation(fields: [tagId], references: [id], onDelete: Restrict)
   tagId     Int
-  tort      torty     @relation(fields: [tortId], references: [id])
+  tort      torty     @relation(fields: [tortId], references: [id], onDelete: Cascade)
   tortId    Int
 
   @@id([tagId, tortId])

@@ -20,7 +20,7 @@ export default function TortyListAdmin({ startupTorty }) {
     <>
       {torty.length
         ? torty.map((tort) => {
-            return <TortCardAdmin key={tort.id} tort={tort} />;
+            return <TortCardAdmin key={tort.id} tort={tort} tortyList={torty} />;
           })
         : null}
     </>

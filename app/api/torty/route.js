@@ -45,12 +45,6 @@ export async function POST(request) {
             create,
           },
         },
-      });
-
-      const res1 = await db.torty.findFirst({
-        where: {
-          id: res.id,
-        },
         include: {
           tags: {
             select: {
@@ -64,7 +58,7 @@ export async function POST(request) {
         },
       });
 
-      return NextResponse.json(res1);
+      return NextResponse.json(res);
     } catch (err) {
       console.log(err);
       if (result.fileNames.length) {

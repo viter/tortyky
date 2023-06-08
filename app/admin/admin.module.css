@@ -3,8 +3,11 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
-  background-color: rgb(95, 158, 160, 0.2);
-  position: relative;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+  background-color: rgb(142, 151, 182);
 }
 
 .logo {
@@ -14,6 +17,7 @@
 .main {
   margin: auto;
   padding: 1rem;
+  padding-top: 100px;
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -68,6 +72,13 @@
   vertical-align: top;
 }
 
-.tortyDiv {
+.tortyDiv,
+.imagesDiv {
   margin-top: 2rem;
+}
+
+.imagesDiv {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
 }

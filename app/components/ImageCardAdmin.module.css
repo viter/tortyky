@@ -1,0 +1,24 @@
+.thumbnailDiv {
+  position: relative;
+}
+
+.removeButton {
+  box-sizing: border-box;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background-color: rgb(221, 200, 200);
+  color: rgb(66, 63, 66);
+  padding: 3px 0 0 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 17px;
+  font-weight: bolder;
+}
+
+.removeButton:hover {
+  background-color: rgb(233, 135, 140);
+  cursor: pointer;
+}
