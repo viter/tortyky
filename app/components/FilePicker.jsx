@@ -24,6 +24,7 @@ const FilePicker = forwardRef(({ nameAttribute, allowedFileTypes, isMultiple, ..
   useEffect(() => {
     if (clearSelectedImages) {
       setImages([]);
+      filesArray.current = [];
       dispatch(setClearImagesFlagFalse());
     }
   }, [clearSelectedImages]);
