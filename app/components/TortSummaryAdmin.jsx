@@ -45,7 +45,7 @@ export default function TortSummaryAdmin({ tort }) {
       <p>
         <button className={styles.editButton} onClick={handleEditClick}>
           Редагувати
-        </button>{' '}
+        </button>
         <button className={styles.deleteButton} onClick={handleDeleteClick}>
           Видалити
         </button>

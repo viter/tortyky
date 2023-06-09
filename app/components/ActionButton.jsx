@@ -4,7 +4,7 @@ import styles from './ActionButton.module.css';
 export default function ActionButton({ tortId, deleteTort }) {
   return (
     <div className={styles.actionButtonMain} data-tortid={tortId}>
-      <Link href={`/admin/${tortId}`}>
+      <Link href={`/admin/${tortId}?show=form`}>
         <div className={styles.buttonEdit}>
           <svg
             className={styles.buttonIcon}

@@ -6,6 +6,7 @@ import { setStartupTorty } from '@/slices/tortySlice';
 import { useDispatch } from 'react-redux';
 import styles from './TortCardAdmin.module.css';
 import ActionButton from './ActionButton';
+import Link from 'next/link';
 
 export default function TortCardAdmin({ tort, tortyList }) {
   const imgSrc = tort.images.length ? '/images/' + tort.images.split(',')[0] : '/placeholder.png';
@@ -44,7 +45,9 @@ export default function TortCardAdmin({ tort, tortyList }) {
       onMouseLeave={mouseLeaveHandler}
     >
       {hover ? <ActionButton deleteTort={deleteTort} tortId={tort.id} /> : null}
-      <Image src={imgSrc} width={160} height={100} alt="tortyk" />
+      <Link href={`/admin/${tort.id}`}>
+        <Image src={imgSrc} width={160} height={100} alt="tortyk" />
+      </Link>
       <div>{tort.name}</div>
       <div>{tort.description}</div>
       <div>{tags}</div>
