@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
 import { db } from '@/utils/db.server';
-import { join } from 'path';
 const fs = require('fs');
 import saveFiles from '@/utils/fileSaver';
 
@@ -23,7 +22,7 @@ export async function DELETE(request, { params }) {
     if (result.images) {
       const images = result.images.split(',');
       if (images.length > 0) {
-        const uploadDir = join(process.cwd(), 'public', 'images');
+        const uploadDir = process.env.UPLOAD_DIR;
         images.forEach((image) => {
           fs.unlinkSync(`${uploadDir}/${image}`);
         });
@@ -57,7 +56,7 @@ export async function PUT(request, { params }) {
 
   const data = await request.formData();
 
-  const uploadDir = join(process.cwd(), 'public', 'images');
+  const uploadDir = process.env.UPLOAD_DIR;
 
   const files = [];
   for (const file of data.entries()) {

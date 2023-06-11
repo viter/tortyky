@@ -34,7 +34,7 @@ export default function TortSummaryAdmin({ tort }) {
   return (
     <>
       <p>
-        <b>Ім'я:</b> {tort.name}
+        <b>Ім&apos;я:</b> {tort.name}
       </p>
       <p>
         <b>Опис:</b> {tort.description}

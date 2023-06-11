@@ -29,7 +29,7 @@ export default function ImageListAdmin({ images, tortData }) {
         <ImageCardAdmin
           key={image}
           imageName={image}
-          src={`/images/${image}`}
+          src={`http:/localhost/images/${image}`}
           dim={{ width: 300, height: 200 }}
           handleImageRemove={handleImageRemove}
         />

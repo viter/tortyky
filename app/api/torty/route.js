@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
-import { join } from 'path';
 import saveFiles from '@/utils/fileSaver';
 import { db } from '@/utils/db.server';
 const fs = require('fs');
@@ -15,7 +14,7 @@ export async function POST(request) {
 
   const data = await request.formData();
 
-  const uploadDir = join(process.cwd(), 'public', 'images');
+  const uploadDir = process.env.UPLOAD_DIR;
 
   const files = [];
   for (const file of data.entries()) {

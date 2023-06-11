@@ -4,6 +4,7 @@ import { signIn } from 'next-auth/react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './login.module.css';
+import Image from 'next/image';
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -87,7 +88,13 @@ export const LoginForm = () => {
           onClick={() => signIn('google', { callbackUrl })}
           role="button"
         >
-          <img className={styles.googleLogo} src="/google.svg" alt="sign in with google" />
+          <Image
+            className={styles.googleLogo}
+            src="/google.svg"
+            width={50}
+            height={50}
+            alt="sign in with google"
+          />
           Продовжіть з Google
         </a>
       </div>

@@ -9,7 +9,9 @@ import ActionButton from './ActionButton';
 import Link from 'next/link';
 
 export default function TortCardAdmin({ tort, tortyList }) {
-  const imgSrc = tort.images.length ? '/images/' + tort.images.split(',')[0] : '/placeholder.png';
+  const imgSrc = tort.images.length
+    ? 'http:/localhost/images/' + tort.images.split(',')[0]
+    : '/placeholder.png';
   const tags = tort.tags.map((t) => t.tag.name).join(', ');
 
   const dispatch = useDispatch();

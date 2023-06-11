@@ -153,4 +153,5 @@ function ImageThumb({ imageName, src, imageRemoveHandler, dim }) {
   );
 }
 
+FilePicker.displayName = 'FilePicker';
 export default FilePicker;
