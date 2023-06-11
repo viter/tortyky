@@ -93,7 +93,11 @@ export async function PUT(request, { params }) {
 
       let imagesToSave = currentImages.images;
       if (result.fileNames.length > 0) {
-        imagesToSave += ',' + result.fileNames.join(',');
+        if (imagesToSave.length > 0) {
+          imagesToSave += ',' + result.fileNames.join(',');
+        } else {
+          imagesToSave = result.fileNames.join(',');
+        }
       }
 
       const updatedTort = await db.torty.update({
