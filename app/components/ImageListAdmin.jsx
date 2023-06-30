@@ -3,9 +3,9 @@ import ImageCardAdmin from '@/app/components/ImageCardAdmin';
 import { removeImage } from '../actions';
 import { useEffect, useTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateImagesList } from '@/slices/tortySlice';
+import { updateImagesList, setStartupTorty } from '@/slices/tortySlice';
 
-export default function ImageListAdmin({ images, tortData }) {
+export default function ImageListAdmin({ images, tortId }) {
   let [isPending, startTransition] = useTransition();
 
   const dispatch = useDispatch();
@@ -13,15 +13,20 @@ export default function ImageListAdmin({ images, tortData }) {
   const imagesList = useSelector((state) => state.torty.imagesList);
 
   useEffect(() => {
-    dispatch(updateImagesList(images));
+    if (imagesList.length > 0) {
+      dispatch(updateImagesList(imagesList));
+    } else {
+      dispatch(updateImagesList(images));
+    }
   }, []);
 
   const handleImageRemove = (e) =>
     startTransition(async () => {
       const imageName = e.target.dataset.imagename;
 
-      await removeImage(imageName, tortData);
+      const torty = await removeImage(imageName, tortId);
       dispatch(updateImagesList(imagesList.filter((image) => image !== imageName)));
+      dispatch(setStartupTorty(torty));
     });
 
   return imagesList.length

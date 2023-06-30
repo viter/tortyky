@@ -21,11 +21,6 @@ export default async function Tort({ params }) {
 
   const images = tort.images.length ? tort.images.split(',') : [];
 
-  const tortData = {
-    id: tort.id,
-    images,
-  };
-
   return (
     <>
       <div className={styles.header}>
@@ -37,7 +32,7 @@ export default async function Tort({ params }) {
           <TortContentAdmin initialTagsList={tags} tort={tort} />
         </div>
         <div className={styles.imagesDiv}>
-          {images?.length ? <ImageListAdmin images={images} tortData={tortData} /> : null}
+          <ImageListAdmin images={images} tortId={tort.id} />
         </div>
       </div>
     </>

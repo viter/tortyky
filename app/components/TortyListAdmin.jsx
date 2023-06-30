@@ -9,11 +9,13 @@ import TortCardAdmin from './TortCardAdmin';
 
 export default function TortyListAdmin({ startupTorty }) {
   const torty = useSelector((state) => state.torty.torty);
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!torty.length) {
-      store.dispatch(setStartupTorty(startupTorty));
+    if (torty.length > 0) {
+      dispatch(setStartupTorty(torty));
+    } else {
+      dispatch(setStartupTorty(startupTorty));
     }
   }, []);
   return (

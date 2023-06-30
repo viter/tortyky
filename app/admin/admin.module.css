@@ -27,8 +27,12 @@
 .mainLink {
   font-size: 2rem;
   font-weight: bold;
-  color: rgb(68, 55, 85);
+  /*color: rgb(68, 55, 85);*/
   text-decoration: none;
+  background: linear-gradient(120deg, rgb(143, 54, 98), rgb(68, 50, 92));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .mainLink:hover {
