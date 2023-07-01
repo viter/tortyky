@@ -3,6 +3,8 @@ import TortyForm from '@/app/components/forms/TortyForm';
 import { db } from '@/utils/db.server';
 import TortyListAdmin from '../components/TortyListAdmin';
 
+export const revalidate = 1;
+
 export default async function Torty() {
   const torty = await db.torty.findMany({
     include: {

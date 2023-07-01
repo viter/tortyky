@@ -3,6 +3,8 @@ import { db } from '@/utils/db.server';
 import ImageListAdmin from '@/app/components/ImageListAdmin';
 import TortContentAdmin from '@/app/components/TortContentAdmin';
 
+export const revalidate = 1;
+
 export default async function Tort({ params }) {
   const tort = await db.torty.findFirst({
     where: {
