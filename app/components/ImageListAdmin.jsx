@@ -34,7 +34,7 @@ export default function ImageListAdmin({ images, tortId }) {
         <ImageCardAdmin
           key={image}
           imageName={image}
-          src={`http:/localhost/images/${image}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGES_URL}${image}`}
           dim={{ width: 300, height: 200 }}
           handleImageRemove={handleImageRemove}
         />

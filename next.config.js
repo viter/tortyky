@@ -11,6 +11,12 @@ const nextConfig = {
         port: '',
         pathname: '/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'tortyky.space',
+        port: '',
+        pathname: '/images/**',
+      },
     ],
   },
 };

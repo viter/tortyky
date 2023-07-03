@@ -10,7 +10,7 @@ import Link from 'next/link';
 
 export default function TortCardAdmin({ tort, tortyList }) {
   const imgSrc = tort.images.length
-    ? 'http:/localhost/images/' + tort.images.split(',')[0]
+    ? process.env.NEXT_PUBLIC_IMAGES_URL + tort.images.split(',')[0]
     : '/placeholder.png';
   const tags = tort.tags.map((t) => t.tag.name).join(', ');
 

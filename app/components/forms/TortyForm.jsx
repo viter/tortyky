@@ -11,7 +11,6 @@ import {
   setClearImagesFlagTrue,
   updateImagesList,
   setShowFormFlagFalse,
-  setIsReload,
 } from '@/slices/tortySlice';
 import { useEffect, useState } from 'react';
 
