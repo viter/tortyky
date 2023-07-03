@@ -11,18 +11,28 @@ import {
   setClearImagesFlagTrue,
   updateImagesList,
   setShowFormFlagFalse,
+  setIsReload,
 } from '@/slices/tortySlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function TortyForm({ initialTagsList, tort, updateTort }) {
+async function getTags() {
+  const result = await fetch('/api/tags');
+  const tags = await result.json();
+  return tags.result;
+}
+
+export default function TortyForm({ tort, updateTort }) {
   const dispatch = useDispatch();
   const currentTags = useSelector((state) => state.tags.tags);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getTags().then((tags) => {
+      setTags(tags);
+    });
   }, []);
 
-  const tags = currentTags.length ? currentTags : initialTagsList;
   const tagIdsList = tort?.tags?.map((tag) => tag.tag.id.toString());
 
   const {
@@ -101,16 +111,17 @@ export default function TortyForm({ initialTagsList, tort, updateTort }) {
             rows={5}
           />
 
-          {tags.length &&
-            tags.map((tag) => {
-              return (
-                <label key={tag.id} className={styles.checkboxContainer}>
-                  {tag.name}
-                  <input type="checkbox" {...register('tag')} value={tag.id} />
-                  <span className={styles.checkmark}></span>
-                </label>
-              );
-            })}
+          {tags.length
+            ? tags.map((tag) => {
+                return (
+                  <label key={tag.id} className={styles.checkboxContainer}>
+                    {tag.name}
+                    <input type="checkbox" {...register('tag')} value={tag.id} />
+                    <span className={styles.checkmark}></span>
+                  </label>
+                );
+              })
+            : null}
           <button type="submit" className={styles.submitButton}>
             {tort?.name ? 'Змінити' : 'Додати'}
           </button>

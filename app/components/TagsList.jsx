@@ -1,11 +1,11 @@
 'use client';
 
-import { store } from '@/store';
-import { setStartupTags, changeValuesToUpdate } from '@/slices/tagsSlice';
+import { setStartupTags, changeValuesToUpdate, setIsReload } from '@/slices/tagsSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import ErrorMessageDialog from './ErrorMessageDialog';
 import styles from './TagsList.module.css';
+import { store } from '@/store';
 
 export default function TagsList({ startupTags }) {
   const tags = useSelector((state) => state.tags.tags);
@@ -15,9 +15,15 @@ export default function TagsList({ startupTags }) {
   const [errorMessageText, setErrorMessageText] = useState('');
 
   useEffect(() => {
-    if (!tags.length) {
-      store.dispatch(setStartupTags(startupTags));
+    if (tags.length > 0 || store.getState().tags.isReload) {
+      dispatch(setStartupTags(tags));
+      dispatch(setIsReload(false));
+    } else {
+      dispatch(setStartupTags(startupTags));
     }
+    return () => {
+      dispatch(setIsReload(true));
+    };
   }, []);
 
   const updateTag = (e) => {

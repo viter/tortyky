@@ -31,7 +31,7 @@ export default function TortContentAdmin({ initialTagsList, tort }) {
   return (
     <>
       {showForm ? (
-        <TortyForm initialTagsList={initialTagsList} tort={currentTort} updateTort={updateTort} />
+        <TortyForm tort={currentTort} updateTort={updateTort} />
       ) : (
         <TortSummaryAdmin tort={currentTort} />
       )}

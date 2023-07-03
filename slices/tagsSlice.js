@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   tags: [],
   valuesToUpdate: {},
+  isReload: false,
 };
 
 export const tagsSlice = createSlice({
@@ -21,9 +22,12 @@ export const tagsSlice = createSlice({
     resetValuesToUpdate: (state) => {
       state.valuesToUpdate = null;
     },
+    setIsReload: (state, action) => {
+      state.isReload = action.payload;
+    },
   },
 });
 
-export const { addTag, setStartupTags, changeValuesToUpdate, resetValuesToUpdate } =
+export const { addTag, setStartupTags, changeValuesToUpdate, resetValuesToUpdate, setIsReload } =
   tagsSlice.actions;
 export default tagsSlice.reducer;

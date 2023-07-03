@@ -3,7 +3,7 @@ import styles from './tags.module.css';
 import TagsForm from '@/app/components/forms/TagsForm';
 import { db } from '@/utils/db.server';
 
-export const revalidate = 1;
+export const revalidate = 0;
 
 export default async function Tegy() {
   const tags = await db.tags.findMany();

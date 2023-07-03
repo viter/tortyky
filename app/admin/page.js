@@ -3,7 +3,7 @@ import TortyForm from '@/app/components/forms/TortyForm';
 import { db } from '@/utils/db.server';
 import TortyListAdmin from '../components/TortyListAdmin';
 
-export const revalidate = 1;
+export const revalidate = 0;
 
 export default async function Torty() {
   const torty = await db.torty.findMany({
@@ -19,7 +19,6 @@ export default async function Torty() {
       },
     },
   });
-  const tags = await db.tags.findMany();
 
   return (
     <>
@@ -29,7 +28,7 @@ export default async function Torty() {
 
       <div className={styles.tortyMain}>
         <div className={styles.formDiv}>
-          <TortyForm initialTagsList={tags} />
+          <TortyForm />
         </div>
         <div className={styles.tortyDiv}>
           <TortyListAdmin startupTorty={torty} />
