@@ -16,7 +16,7 @@ export default function AdminLayout({ children }) {
     setMobileNavBarShown(!mobileNavBarShown);
   }
   return (
-    <div ref={parent}>
+    <div style={{ position: 'relative' }}>
       <nav className={styles.navbar}>
         <div className={styles.logo}>
           <Link href={'/admin'} className={styles.mainLink}>
@@ -26,7 +26,7 @@ export default function AdminLayout({ children }) {
         <NavBar />
         <Hamburger toggleMobileNavBar={toggleMobileNavBar} />
       </nav>
-      {mobileNavBarShown ? <MobileNavBar /> : null}
+      <div ref={parent}>{mobileNavBarShown ? <MobileNavBar /> : null}</div>
       <div className={styles.main}>{children}</div>
     </div>
   );
