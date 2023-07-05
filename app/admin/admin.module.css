@@ -86,3 +86,13 @@
   gap: 2rem;
   flex-wrap: wrap;
 }
+
+.mobileNavBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: aquamarine;
+  z-index: 10;
+}

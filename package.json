@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.7.0",
     "@prisma/client": "^4.16.2",
     "@reduxjs/toolkit": "^1.9.5",
     "bcryptjs": "^2.4.3",
