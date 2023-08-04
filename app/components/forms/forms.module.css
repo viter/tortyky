@@ -132,3 +132,13 @@
 .section2 {
   width: 60%;
 }
+
+@media screen and (orientation: portrait) {
+  .mainSection {
+    flex-wrap: wrap;
+  }
+  .section1,
+  .section2 {
+    width: 100%;
+  }
+}

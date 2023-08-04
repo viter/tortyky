@@ -121,9 +121,7 @@ export default function TortyForm({ tort, updateTort }) {
                 );
               })
             : null}
-          <button type="submit" className={styles.submitButton}>
-            {tort?.name ? 'Змінити' : 'Додати'}
-          </button>
+
           {tort?.name ? (
             <button type="button" className={styles.cancelButton} onClick={handleCancelClick}>
               Скасувати
@@ -138,6 +136,9 @@ export default function TortyForm({ tort, updateTort }) {
             {...register('photo')}
           />
         </div>
+        <button type="submit" className={styles.submitButton}>
+          {tort?.name ? 'Змінити' : 'Додати'}
+        </button>
       </div>
     </form>
   );
