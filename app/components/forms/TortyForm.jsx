@@ -121,12 +121,6 @@ export default function TortyForm({ tort, updateTort }) {
                 );
               })
             : null}
-
-          {tort?.name ? (
-            <button type="button" className={styles.cancelButton} onClick={handleCancelClick}>
-              Скасувати
-            </button>
-          ) : null}
         </div>
         <div className={styles.section2}>
           <FilePicker
@@ -136,10 +130,15 @@ export default function TortyForm({ tort, updateTort }) {
             {...register('photo')}
           />
         </div>
-        <button type="submit" className={styles.submitButton}>
-          {tort?.name ? 'Змінити' : 'Додати'}
-        </button>
       </div>
+      <button type="submit" className={styles.submitButton}>
+        {tort?.name ? 'Змінити' : 'Додати'}
+      </button>
+      {tort?.name ? (
+        <button type="button" className={styles.cancelButton} onClick={handleCancelClick}>
+          Скасувати
+        </button>
+      ) : null}
     </form>
   );
 }
