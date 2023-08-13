@@ -60,6 +60,24 @@
 }
 
 @media screen and (max-width: 1080px) {
+  .navLink,
+  .activeLink,
+  .logoutLink {
+    padding: 0.3rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navLink,
+  .activeLink,
+  .logoutLink {
+    padding: 0.2rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (orientation: portrait) {
   .sectionsBar {
     display: none;
   }

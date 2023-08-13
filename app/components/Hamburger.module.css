@@ -14,7 +14,7 @@
   stroke: #fff;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (orientation: portrait) {
   .hamburger {
     display: block;
   }

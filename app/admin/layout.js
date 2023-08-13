@@ -26,7 +26,9 @@ export default function AdminLayout({ children }) {
         <NavBar />
         <Hamburger toggleMobileNavBar={toggleMobileNavBar} />
       </nav>
-      <div ref={parent}>{mobileNavBarShown ? <MobileNavBar /> : null}</div>
+      <div ref={parent}>
+        {mobileNavBarShown ? <MobileNavBar toggleMobileNavBar={toggleMobileNavBar} /> : null}
+      </div>
       <div className={styles.main}>{children}</div>
     </div>
   );
