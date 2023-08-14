@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 import styles from '../admin/admin.module.css';
 
 export default function MobileNavBar({ toggleMobileNavBar }) {
@@ -14,10 +15,8 @@ export default function MobileNavBar({ toggleMobileNavBar }) {
           <Link href="/admin/napovnennya">Наповнення</Link>
           <Link href="/admin/tags">Теги</Link>
         </div>
-        <div className={styles.sections}>
-          <div className={styles.logoutdiv} onClick={() => signOut()}>
-            <span className={styles.logoutLink}>Вийти</span>
-          </div>
+        <div className={styles.logoutdiv} onClick={() => signOut()}>
+          <span className={styles.logoutLink}>Вийти</span>
         </div>
       </div>
     </div>
