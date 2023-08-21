@@ -26,7 +26,7 @@ export async function POST(request) {
   const result = await saveFiles(files, uploadDir);
   if (files.length === 0 || (files.length > 0 && result.fileNames.length > 0)) {
     const tort = JSON.parse(data.get('tort'));
-    const tagsArray = tort.tag ? tort.tag : [];
+    const tagsArray = tort.tag ? Array.isArray(tort.tag) ? tort.tag : new Array(tort.tag) : [];
     const create = tagsArray.map((tag) => ({
       tag: {
         connect: {
