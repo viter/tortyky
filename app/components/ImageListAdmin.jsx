@@ -13,11 +13,7 @@ export default function ImageListAdmin({ images, tortId }) {
   const imagesList = useSelector((state) => state.torty.imagesList);
 
   useEffect(() => {
-    if (imagesList.length > 0) {
-      dispatch(updateImagesList(imagesList));
-    } else {
-      dispatch(updateImagesList(images));
-    }
+    dispatch(updateImagesList(images));
   }, []);
 
   const handleImageRemove = (e) =>
