@@ -27,3 +27,8 @@
 .deleteButton:hover {
   background-color: rgb(170, 52, 97);
 }
+
+.property {
+  font-weight: bold;
+  color: rgb(22, 65, 88);
+}

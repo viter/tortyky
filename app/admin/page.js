@@ -23,7 +23,7 @@ export default async function Torty() {
   return (
     <>
       <div className={styles.header}>
-        <h1>Торти</h1>
+        <h1 className={styles.pageHeader}>Торти</h1>
       </div>
 
       <div className={styles.tortyMain}>

@@ -152,3 +152,10 @@
   background-color: rgb(68, 55, 85);
   cursor: pointer;
 }
+
+.pageHeader {
+  background: -webkit-linear-gradient(rgb(28, 84, 101), rgb(89, 53, 114));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

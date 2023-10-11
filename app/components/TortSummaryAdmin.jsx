@@ -34,13 +34,13 @@ export default function TortSummaryAdmin({ tort }) {
   return (
     <>
       <p>
-        <b>Ім&apos;я:</b> {tort.name}
+        <span className={styles.property}>Ім&apos;я:</span> {tort.name}
       </p>
       <p>
-        <b>Опис:</b> {tort.description}
+        <span className={styles.property}>Опис:</span> {tort.description}
       </p>
       <p>
-        <b>Теги:</b> {tags}
+        <span className={styles.property}>Теги:</span> {tags}
       </p>
       <p>
         <button className={styles.editButton} onClick={handleEditClick}>

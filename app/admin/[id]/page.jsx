@@ -27,7 +27,7 @@ export default async function Tort({ params }) {
   return (
     <>
       <div className={styles.header}>
-        <h1>{tort.name}</h1>
+        <h1 className={styles.pageHeader}>{tort.name}</h1>
       </div>
 
       <div className={styles.tortyMain}>
