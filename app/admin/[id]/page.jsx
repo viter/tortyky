@@ -24,8 +24,6 @@ export default async function Tort({ params }) {
 
   const images = tort.images.length ? tort.images.split(',') : [];
 
-  console.log(images);
-
   return (
     <>
       <div className={styles.header}>
