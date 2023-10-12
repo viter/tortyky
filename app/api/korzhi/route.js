@@ -25,8 +25,12 @@ export async function POST(request) {
 
   const result = await saveFiles(files, uploadDir);
   if (files.length === 0 || (files.length > 0 && result.fileNames.length > 0)) {
-    const tort = JSON.parse(data.get('torty'));
-    const tagsArray = tort.tag ? (Array.isArray(tort.tag) ? tort.tag : new Array(tort.tag)) : [];
+    const korzh = JSON.parse(data.get('korzhi'));
+    const tagsArray = korzh.tag
+      ? Array.isArray(korzh.tag)
+        ? korzh.tag
+        : new Array(korzh.tag)
+      : [];
     const create = tagsArray.map((tag) => ({
       tag: {
         connect: {
@@ -35,25 +39,11 @@ export async function POST(request) {
       },
     }));
     try {
-      const res = await db.torty.create({
+      const res = await db.korzhi.create({
         data: {
-          name: tort.name,
-          description: tort.description,
+          name: korzh.name,
+          description: korzh.description,
           images: result.fileNames.join(','),
-          tags: {
-            create,
-          },
-        },
-        include: {
-          tags: {
-            select: {
-              tag: {
-                select: {
-                  name: true,
-                },
-              },
-            },
-          },
         },
       });
 
@@ -65,7 +55,7 @@ export async function POST(request) {
           fs.unlinkSync(`${uploadDir}/${fileName}`);
         });
       }
-      return NextResponse.json('Не вдалося зберегти тортик');
+      return NextResponse.json('Не вдалося зберегти корж');
     }
   } else {
     return NextResponse.json('Фотки не збереглися');

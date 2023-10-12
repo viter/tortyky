@@ -13,7 +13,7 @@ export async function DELETE(request, { params }) {
   }
 
   try {
-    const result = await db.torty.delete({
+    const result = await db.korzhi.delete({
       where: {
         id: parseInt(params.id),
       },
@@ -29,17 +29,9 @@ export async function DELETE(request, { params }) {
       }
     }
 
-    const torty = await db.torty.findMany({
-      include: {
-        tags: {
-          select: {
-            tag: true,
-          },
-        },
-      },
-    });
+    const korzhi = await db.korzhi.findMany({});
 
-    return NextResponse.json(torty);
+    return NextResponse.json(korzhi);
   } catch (err) {
     if (err.code === 'P2003') {
       return NextResponse.json(err);
@@ -67,22 +59,9 @@ export async function PUT(request, { params }) {
 
   const result = await saveFiles(files, uploadDir);
   if (files.length === 0 || (files.length > 0 && result.fileNames.length > 0)) {
-    const tort = JSON.parse(data.get('torty'));
-    const tagsArray = tort.tag ? tort.tag : [];
-    const create = tagsArray.map((tag) => ({
-      tag: {
-        connect: {
-          id: parseInt(tag),
-        },
-      },
-    }));
+    const korzh = JSON.parse(data.get('korzhi'));
     try {
-      await db.TagsOnTorty.deleteMany({
-        where: {
-          tortId: parseInt(params.id),
-        },
-      });
-      const currentImages = await db.torty.findFirst({
+      const currentImages = await db.korzhi.findFirst({
         where: {
           id: parseInt(params.id),
         },
@@ -100,38 +79,20 @@ export async function PUT(request, { params }) {
         }
       }
 
-      const updatedTort = await db.torty.update({
+      const updatedKorzh = await db.korzhi.update({
         where: {
           id: parseInt(params.id),
         },
         data: {
-          name: tort.name,
-          description: tort.description,
+          name: korzh.name,
+          description: korzh.description,
           images: imagesToSave,
-          tags: {
-            create,
-          },
-        },
-        include: {
-          tags: {
-            select: {
-              tag: true,
-            },
-          },
         },
       });
 
-      const torty = await db.torty.findMany({
-        include: {
-          tags: {
-            select: {
-              tag: true,
-            },
-          },
-        },
-      });
+      const korzhi = await db.korzhi.findMany({});
 
-      return NextResponse.json({ torty, updatedTort });
+      return NextResponse.json({ korzhi, updatedKorzh });
     } catch (err) {
       console.log(err);
       if (result.fileNames.length) {
@@ -139,7 +100,7 @@ export async function PUT(request, { params }) {
           fs.unlinkSync(`${uploadDir}/${fileName}`);
         });
       }
-      return NextResponse.json('Не вдалося зберегти тортик');
+      return NextResponse.json('Не вдалося зберегти коржик');
     }
   } else {
     return NextResponse.json('Фотки не збереглися');

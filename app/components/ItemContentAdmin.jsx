@@ -1,15 +1,15 @@
 'use client';
 
-import TortSummaryAdmin from './TortSummaryAdmin';
-import TortyForm from './forms/TortyForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setShowFormFlagFalse, setShowFormFlagTrue } from '@/slices/tortySlice';
 import { useSearchParams } from 'next/navigation';
+import ItemForm from './forms/ItemForm';
+import ItemSummaryAdmin from './ItemSummaryAdmin';
 
-export default function TortContentAdmin({ initialTagsList, tort }) {
+export default function ItemContentAdmin({ itemType, item }) {
   const showForm = useSelector((state) => state.torty.showForm);
-  const [currentTort, setCurrentTort] = useState(tort);
+  const [currentItem, setCurrentItem] = useState(item);
   const searchParams = useSearchParams();
   const show = searchParams.get('show');
 
@@ -24,16 +24,16 @@ export default function TortContentAdmin({ initialTagsList, tort }) {
     };
   }, []);
 
-  function updateTort(tort) {
-    setCurrentTort(tort);
+  function updateItem(item) {
+    setCurrentItem(item);
   }
 
   return (
     <>
       {showForm ? (
-        <TortyForm tort={currentTort} updateTort={updateTort} />
+        <ItemForm item={currentItem} updateItem={updateItem} itemType={itemType} />
       ) : (
-        <TortSummaryAdmin tort={currentTort} />
+        <ItemSummaryAdmin item={currentItem} itemType={itemType} />
       )}
     </>
   );

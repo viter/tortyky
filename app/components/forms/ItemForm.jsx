@@ -12,6 +12,7 @@ import {
   updateImagesList,
   setShowFormFlagFalse,
 } from '@/slices/tortySlice';
+import { addKorzh, setStartupKorzhi } from '@/slices/korzhiSlice';
 import { useEffect, useState } from 'react';
 
 async function getTags() {
@@ -20,19 +21,21 @@ async function getTags() {
   return tags.result;
 }
 
-export default function TortyForm({ tort, updateTort }) {
+export default function ItemForm({ item, updateItem, itemType }) {
   const dispatch = useDispatch();
   const currentTags = useSelector((state) => state.tags.tags);
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getTags().then((tags) => {
-      setTags(tags);
-    });
+    if (['torty'].includes(itemType)) {
+      getTags().then((tags) => {
+        setTags(tags);
+      });
+    }
   }, []);
 
-  const tagIdsList = tort?.tags?.map((tag) => tag.tag.id.toString());
+  const tagIdsList = item?.tags?.map((tag) => tag.tag.id.toString());
 
   const {
     register,
@@ -41,23 +44,23 @@ export default function TortyForm({ tort, updateTort }) {
     reset,
   } = useForm({
     defaultValues: {
-      name: tort?.name ? tort.name : '',
-      description: tort?.description ? tort.description : '',
+      name: item?.name ? item.name : '',
+      description: item?.description ? item.description : '',
       tag: tagIdsList,
     },
   });
 
   const onSubmit = async ({ name, description, tag, photo }) => {
     let method = 'POST';
-    let url = '/api/torty';
+    let url = `/api/${itemType}`;
 
-    if (tort?.id) {
+    if (item?.id) {
       method = 'PUT';
-      url = `/api/torty/${tort.id}`;
+      url = `/api/${itemType}/${item.id}`;
     }
     const formData = new FormData();
 
-    formData.append('tort', JSON.stringify({ name, description, tag }));
+    formData.append(itemType, JSON.stringify({ name, description, tag }));
 
     const resizedImageFiles = await getResizedImages(photo);
 
@@ -70,19 +73,33 @@ export default function TortyForm({ tort, updateTort }) {
       body: formData,
     });
 
-    if (!tort?.id) {
-      dispatch(addTort(await result.json()));
+    if (!item?.id) {
+      if (itemType === 'torty') {
+        dispatch(addTort(await result.json()));
+      }
+      if (itemType === 'korzhi') {
+        dispatch(addKorzh(await result.json()));
+      }
     }
 
     //if it is an edit mode and new images were added then update images list
-    if (tort?.id) {
+    if (item?.id) {
       const res = await result.json();
-      updateTort(res.updatedTort);
-      dispatch(setShowFormFlagFalse());
-      dispatch(setStartupTorty(res.torty));
-      if (resizedImageFiles.length > 0) {
-        dispatch(updateImagesList(res.updatedTort.images.split(',')));
+      if (itemType === 'torty') {
+        updateItem(res.updatedTort);
+        dispatch(setStartupTorty(res.torty));
+        if (resizedImageFiles.length > 0) {
+          dispatch(updateImagesList(res.updatedTort.images.split(',')));
+        }
       }
+      if (itemType === 'korzhi') {
+        updateItem(res.updatedKorzh);
+        dispatch(setStartupKorzhi(res.korzhi));
+        if (resizedImageFiles.length > 0) {
+          dispatch(updateImagesList(res.updatedKorzh.images.split(',')));
+        }
+      }
+      dispatch(setShowFormFlagFalse());
     }
 
     reset();
@@ -110,7 +127,7 @@ export default function TortyForm({ tort, updateTort }) {
             rows={5}
           />
 
-          {tags.length
+          {tags.length && ['torty'].includes(itemType)
             ? tags.map((tag) => {
                 return (
                   <label key={tag.id} className={styles.checkboxContainer}>
@@ -132,9 +149,9 @@ export default function TortyForm({ tort, updateTort }) {
         </div>
       </div>
       <button type="submit" className={styles.submitButton}>
-        {tort?.name ? 'Змінити' : 'Додати'}
+        {item?.name ? 'Змінити' : 'Додати'}
       </button>
-      {tort?.name ? (
+      {item?.name ? (
         <button type="button" className={styles.cancelButton} onClick={handleCancelClick}>
           Скасувати
         </button>

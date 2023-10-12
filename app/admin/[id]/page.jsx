@@ -1,7 +1,7 @@
 import styles from '../admin.module.css';
 import { db } from '@/utils/db.server';
 import ImageListAdmin from '@/app/components/ImageListAdmin';
-import TortContentAdmin from '@/app/components/TortContentAdmin';
+import ItemContentAdmin from '@/app/components/ItemContentAdmin';
 
 //export const revalidate = 0;
 //export const dynamic = 'force-dynamic';
@@ -20,8 +20,6 @@ export default async function Tort({ params }) {
     },
   });
 
-  const tags = await db.tags.findMany();
-
   const images = tort.images.length ? tort.images.split(',') : [];
 
   return (
@@ -32,7 +30,7 @@ export default async function Tort({ params }) {
 
       <div className={styles.tortyMain}>
         <div className={styles.formDiv}>
-          <TortContentAdmin initialTagsList={tags} tort={tort} />
+          <ItemContentAdmin itemType="torty" item={tort} />
         </div>
         <div className={styles.imagesDiv}>
           <ImageListAdmin images={images} tortId={tort.id} />

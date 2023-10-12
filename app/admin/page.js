@@ -1,7 +1,7 @@
 import styles from './admin.module.css';
-import TortyForm from '@/app/components/forms/TortyForm';
 import { db } from '@/utils/db.server';
-import TortyListAdmin from '../components/TortyListAdmin';
+import ItemForm from '@/app/components/forms/ItemForm';
+import ItemsListAdmin from '@/app/components/ItemsListAdmin';
 
 export const revalidate = 0;
 
@@ -28,10 +28,10 @@ export default async function Torty() {
 
       <div className={styles.tortyMain}>
         <div className={styles.formDiv}>
-          <TortyForm />
+          <ItemForm itemType="torty" />
         </div>
         <div className={styles.tortyDiv}>
-          <TortyListAdmin startupTorty={torty} />
+          <ItemsListAdmin startupItems={torty} itemType="torty" />
         </div>
       </div>
     </>

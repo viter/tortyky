@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import styles from './ActionButton.module.css';
 
-export default function ActionButton({ tortId, deleteTort }) {
+export default function ActionButton({ itemId, deleteItem, url }) {
   return (
-    <div className={styles.actionButtonMain} data-tortid={tortId}>
-      <Link href={`/admin/${tortId}?show=form`}>
+    <div className={styles.actionButtonMain} data-itemid={itemId}>
+      <Link href={`${url}?show=form`}>
         <div className={styles.buttonEdit}>
           <svg
             className={styles.buttonIcon}
@@ -21,7 +21,7 @@ export default function ActionButton({ tortId, deleteTort }) {
           </svg>
         </div>
       </Link>
-      <div className={styles.buttonDelete} onClick={deleteTort}>
+      <div className={styles.buttonDelete} onClick={deleteItem}>
         <svg
           className={styles.buttonIcon}
           viewBox="0 0 24 24"
